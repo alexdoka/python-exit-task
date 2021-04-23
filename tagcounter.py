@@ -1,5 +1,9 @@
+#!/usr/bin/env python3
+
 import argparse
 import datetime
+import json
+import logging
 import pickle
 import sqlite3
 from collections import Counter
@@ -9,15 +13,13 @@ from tkinter import messagebox
 
 import requests
 import yaml
-import json
-import logging
-
 
 # variables
 name_logfile = "tags_log_file"
 current_time = str(datetime.datetime.now())[:-7]
 logging.basicConfig(filename='tags_log_file', level=logging.INFO,
                     format='%(asctime)s:%(message)s')
+
 
 def get_url_site(sitename):
     return "https://{}/".format(sitename)
@@ -57,11 +59,6 @@ def get_dict_tags(input_html_date):
     return dict(Counter(parser.tags))
 
 
-# def write_to_logfile(url_site, name_logfile):
-#     log_string = "\n" + current_time + " " + url_site
-#     with open(name_logfile, 'a') as file:
-#         file.write(log_string)
-
 def write_to_logfile(url_site):
     logging.info(url_site)
 
@@ -85,8 +82,6 @@ def tags_to_blob(data):
     return pickle.dumps(data)
 
 
-#
-#
 def write_to_db(sitename, urlsite, date_check, tags_records):
     conn = sqlite3.connect('tags.db')
     c = conn.cursor()

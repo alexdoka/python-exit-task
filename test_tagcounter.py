@@ -37,7 +37,7 @@ class TestCalc(unittest.TestCase):
                          {'html': 1, 'a': 3, 'body': 1})
 
     def test_write_to_logfile(self):
-        tagcounter.write_to_logfile("supertest.com", "tags_log_file")
+        tagcounter.write_to_logfile("supertest.com")
         with open("tags_log_file", "r") as file_object:
             result = False
             for ln in file_object:
