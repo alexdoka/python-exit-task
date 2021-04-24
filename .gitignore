@@ -4,3 +4,4 @@ __pycache__/*
 .idea/*
 *.db
 *.back
+tags_log_file
